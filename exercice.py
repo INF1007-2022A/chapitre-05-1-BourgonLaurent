@@ -40,8 +40,24 @@ def prime_integer_summation() -> int:
     return prime_sum
 
 
+# Utilise un générateur pour sauver
+# de la place dans la mémoire et
+# du temps de calcul
+def fact_gen():
+    accumulation = 1
+    nombre = 1
+    while True:
+        accumulation *= nombre
+        nombre += 1
+        yield accumulation
+
+
 def factorial(number: int) -> int:
-    return 0
+    gen = fact_gen()
+    for _ in range(1, number + 1):
+        fact = next(gen)
+
+    return fact
 
 
 def use_continue() -> None:

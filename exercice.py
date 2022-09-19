@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
+import math
 from typing import List
 
 
@@ -19,7 +20,24 @@ def use_prefixes() -> List[str]:
 
 
 def prime_integer_summation() -> int:
-    return 0
+    n = 0
+    i = 0
+    prime_sum = 0
+    current_num = 2
+    while n < 100:
+        max_multiple = math.floor(math.sqrt(current_num)) + 1
+        for i in range(max_multiple + 1):
+            if i in (0, 1):
+                continue
+            if current_num % i == 0:
+                break
+
+        if i == max_multiple:
+            prime_sum += current_num
+            n += 1
+
+        current_num += 1
+    return prime_sum
 
 
 def factorial(number: int) -> int:

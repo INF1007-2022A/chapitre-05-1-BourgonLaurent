@@ -61,7 +61,11 @@ def factorial(number: int) -> int:
 
 
 def use_continue() -> None:
-    pass
+    for num in range(1, 10 + 1):
+        if num == 5:
+            continue
+
+        print(num)
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:

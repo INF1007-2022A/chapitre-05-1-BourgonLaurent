@@ -69,7 +69,36 @@ def use_continue() -> None:
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    group_list: List[bool] = []
+    for group in groups:
+        ## Critère de taille
+        # Si le groupe possède plus que 10 membres
+        # ou 3 membres et moins, il n'est pas acceptable
+        if not (3 <= len(group) <= 10):
+            group_list.append(False)
+
+        ## Critère d'âge
+        # Si au moins un membre du groupe à exactement 25 ans,
+        # alors le groupe est acceptable peut-importe les autres critères d'âges
+        elif 25 in group:
+            group_list.append(True)
+        ## Critère d'âge
+        # Si au moins un membre du groupe est mineur,
+        # le groupe n'est pas acceptable
+        elif any(age < 18 for age in group):
+            group_list.append(False)
+
+        ## Critère d'âge
+        # Si un membre du groupe est plus vieux que 70 ans
+        # et qu'un autre membre du groupe à exactement 50 ans,
+        # le groupe n'est pas acceptable
+        elif any(age > 70 for age in group) and any(age == 50 for age in group):
+            group_list.append(False)
+
+        else:
+            group_list.append(True)
+
+    return group_list
 
 
 def main() -> None:
